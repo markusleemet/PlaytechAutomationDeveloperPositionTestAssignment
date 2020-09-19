@@ -1,35 +1,71 @@
 package cs.ut;
 
 import cs.ut.entity.FormEntity;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SeleniumTest {
-    private static final String webDriverPath = "c:\\selenium\\geckodriver.exe";
     private static final String systemUnderTest = "https://docs.google.com/forms/d/e/1FAIpQLScVG7idLWR8sxNQygSnLuhehUNVFti0FnVviWCSjDh-JNhsMA/viewform?fbzx=1323604193658677770";
 
+
+    public static void main(String[] args) throws IOException {
+        // Setup RemoteWebDrivers to run Selenium tests
+        WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.chromedriver().setup();
+
+
+        // Create printWriter to write tests results into file
+        File file = new File("testResult/seleniumTestResult");
+        FileWriter fileWriter = new FileWriter(file);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+
+        // Create bufferedReader to read in test cs.ut.output structure
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("testResult/outputStructure"));
+
+
+        writeIntoFile(printWriter, bufferedReader, testCase1(new FirefoxDriver()));
+        writeIntoFile(printWriter, bufferedReader, testCase2(new FirefoxDriver()));
+        writeIntoFile(printWriter, bufferedReader, testCase3(new FirefoxDriver()));
+        writeIntoFile(printWriter, bufferedReader, testCase4(new FirefoxDriver()));
+        writeIntoFile(printWriter, bufferedReader, testCase5(new FirefoxDriver()));
+        writeIntoFile(printWriter, bufferedReader, testCase6(new FirefoxDriver()));
+        writeIntoFile(printWriter, bufferedReader, testCase7(new FirefoxDriver()));
+        writeIntoFile(printWriter, bufferedReader, testCase8(new FirefoxDriver()));
+        writeIntoFile(printWriter, bufferedReader, testCase9(new FirefoxDriver()));
+        writeIntoFile(printWriter, bufferedReader, testCase10(new FirefoxDriver()));
+        writeIntoFile(printWriter, bufferedReader, testCase11(new FirefoxDriver()));
+        writeIntoFile(printWriter, bufferedReader, testCase12(new FirefoxDriver()));
+
+        bufferedReader.close();
+        printWriter.close();
+    }
 
     /**
      * Create FirefoxDriver and get webpage that is being tested with it
      *
      * @return Firefox driver instance
      */
-    private static FirefoxDriver setUpTest() {
-        FirefoxDriver driver = new FirefoxDriver();
+    private static RemoteWebDriver setUpTest( RemoteWebDriver remoteWebDriver) {
+        RemoteWebDriver driver = remoteWebDriver;
         driver.get(systemUnderTest);
         return driver;
     }
 
-    private static String testCase1() {
-        FirefoxDriver driver = setUpTest();
+    private static String testCase1(RemoteWebDriver remoteWebDriver) {
+        RemoteWebDriver driver = setUpTest(remoteWebDriver);
         FormEntity formEntity = new FormEntity(null, "", "", "", "", "");
         WebElement submitButton = formEntity.getSubmitButton(driver);
         submitButton.click();
@@ -44,8 +80,8 @@ public class SeleniumTest {
         }
     }
 
-    private static String testCase2() {
-        FirefoxDriver driver = setUpTest();
+    private static String testCase2(RemoteWebDriver remoteWebDriver) {
+        RemoteWebDriver driver = setUpTest(remoteWebDriver);
         FormEntity formEntity = new FormEntity(null, "", "", "", "", "");
         WebElement submitButton = formEntity.getSubmitButton(driver);
         submitButton.click();
@@ -70,8 +106,8 @@ public class SeleniumTest {
         return "All required field that are marked with * have following message next to them 'See on kohustuslik küsimus'.";
     }
 
-    private static String testCase3() {
-        FirefoxDriver driver = setUpTest();
+    private static String testCase3(RemoteWebDriver remoteWebDriver) {
+        RemoteWebDriver driver = setUpTest(remoteWebDriver);
         FormEntity formEntity = new FormEntity(null, null, "mail-without-at-sign", null, null, null);
         WebElement submitButton = formEntity.getSubmitButton(driver);
         WebElement emailContainer = formEntity.getEmailContainer(driver);
@@ -91,8 +127,8 @@ public class SeleniumTest {
         }
     }
 
-    private static String testCase4() {
-        FirefoxDriver driver = new FirefoxDriver();
+    private static String testCase4(RemoteWebDriver remoteWebDriver) {
+        RemoteWebDriver driver = setUpTest(remoteWebDriver);
         driver.get(systemUnderTest);
         FormEntity formEntity = new FormEntity(2, "Markus Leemet", "markusleemet@gmail.com", "Tartu", "56196263", "No comment!");
         formEntity.fillAllFields(driver);
@@ -111,8 +147,8 @@ public class SeleniumTest {
         }
     }
 
-    private static String testCase5() {
-        FirefoxDriver driver = setUpTest();
+    private static String testCase5(RemoteWebDriver remoteWebDriver) {
+        RemoteWebDriver driver = setUpTest(remoteWebDriver);
         FormEntity formEntity = new FormEntity(3, "Markus Leemet", "markusleemet@gmail.com", "Tartu", "This is not valid phone number 123", "No comment!");
         formEntity.fillPhoneField(driver);
         formEntity.clickSubmitButton(driver);
@@ -130,8 +166,8 @@ public class SeleniumTest {
         }
     }
 
-    private static String testCase6() {
-        FirefoxDriver driver = setUpTest();
+    private static String testCase6(RemoteWebDriver remoteWebDriver) {
+        RemoteWebDriver driver = setUpTest(remoteWebDriver);
 
         // Get all question containers
         List<WebElement> allQuestionContainers = driver.findElementsByClassName("freebirdFormviewerViewNumberedItemContainer");
@@ -160,8 +196,8 @@ public class SeleniumTest {
         return "All fields that have attribute 'required' also have visual element next to them that show these are required.";
     }
 
-    private static String testCase7() {
-        FirefoxDriver driver = setUpTest();
+    private static String testCase7(RemoteWebDriver remoteWebDriver) {
+        RemoteWebDriver driver = setUpTest(remoteWebDriver);
         FormEntity formEntity = new FormEntity(3, "", "", "", "", "");
         formEntity.selectFirstQuestionOption(driver);
         WebElement cancelSelectionButton = formEntity.getCancelSelectionButton(driver);
@@ -181,8 +217,8 @@ public class SeleniumTest {
         return "None of the options are selected in the first question.";
     }
 
-    private static String testCase8() {
-        FirefoxDriver driver = setUpTest();
+    private static String testCase8(RemoteWebDriver remoteWebDriver) {
+        RemoteWebDriver driver = setUpTest(remoteWebDriver);
         FormEntity formEntity = new FormEntity(null, "", "this-is-not-valid-email", "", "", "");
         formEntity.fillEmailField(driver);
         WebElement phoneField = formEntity.getPhoneField(driver);
@@ -209,8 +245,8 @@ public class SeleniumTest {
         }
     }
 
-    private static String testCase9() {
-        FirefoxDriver driver = setUpTest();
+    private static String testCase9(RemoteWebDriver remoteWebDriver) {
+        RemoteWebDriver driver = setUpTest(remoteWebDriver);
         FormEntity formEntity = new FormEntity(null, "", "", "", "", "");
 
         WebElement firstQuestionInputField = driver.findElementByXPath("//input[@class='quantumWizTextinputSimpleinputInput exportInput']");
@@ -232,8 +268,8 @@ public class SeleniumTest {
         }
     }
 
-    private static String testCase10() {
-        FirefoxDriver driver = setUpTest();
+    private static String testCase10(RemoteWebDriver remoteWebDriver) {
+        RemoteWebDriver driver = setUpTest(remoteWebDriver);
         FormEntity formEntity = new FormEntity(null, "Markus Leemet", "markusleeemt@gmail.com", "Tartu", "", "");
 
         formEntity.fillNameField(driver);
@@ -253,8 +289,8 @@ public class SeleniumTest {
         }
     }
 
-    private static String testCase11() {
-        FirefoxDriver driver = setUpTest();
+    private static String testCase11(RemoteWebDriver remoteWebDriver) {
+        RemoteWebDriver driver = setUpTest(remoteWebDriver);
         FormEntity formEntity = new FormEntity(3, "", "", "", "", "");
 
         formEntity.selectFirstQuestionOption(driver);
@@ -271,8 +307,8 @@ public class SeleniumTest {
         }
     }
 
-    private static String testCase12() {
-        FirefoxDriver driver = setUpTest();
+    private static String testCase12(RemoteWebDriver remoteWebDriver) {
+        RemoteWebDriver driver = setUpTest(remoteWebDriver);
         FormEntity formEntity = new FormEntity(3, "", "", "", "", "");
         formEntity.selectFirstQuestionOption(driver);
         Boolean cancelButtonIsVisible = formEntity.getCancelSelectionButton(driver).isDisplayed();
@@ -306,35 +342,5 @@ public class SeleniumTest {
 
         bufferedReader.readLine();
         printWriter.print("\n\n");
-    }
-
-    public static void main(String[] args) throws IOException {
-        // Set webdriver path to make Selenium use possible
-        System.setProperty("webdriver.gecko.driver", webDriverPath);
-
-
-        // Create printWriter to write tests results into file
-        File file = new File("src/main/java/cs/ut/output/seleniumTestResult");
-        FileWriter fileWriter = new FileWriter(file);
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-
-        // Create bufferedReader to read in test cs.ut.output structure
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/java/cs/ut/output/outputStructure"));
-
-        writeIntoFile(printWriter, bufferedReader, testCase1());
-        writeIntoFile(printWriter, bufferedReader, testCase2());
-        writeIntoFile(printWriter, bufferedReader, testCase3());
-        writeIntoFile(printWriter, bufferedReader, testCase4());
-        writeIntoFile(printWriter, bufferedReader, testCase5());
-        writeIntoFile(printWriter, bufferedReader, testCase6());
-        writeIntoFile(printWriter, bufferedReader, testCase7());
-        writeIntoFile(printWriter, bufferedReader, testCase8());
-        writeIntoFile(printWriter, bufferedReader, testCase9());
-        writeIntoFile(printWriter, bufferedReader, testCase10());
-        writeIntoFile(printWriter, bufferedReader, testCase11());
-        writeIntoFile(printWriter, bufferedReader, testCase12());
-
-        bufferedReader.close();
-        printWriter.close();
     }
 }

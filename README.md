@@ -1,6 +1,6 @@
 # Playtech Automation Developer position test assignment
 
-To run this project Selenium(https://www.selenium.dev/) with Firefox GeckoDriver must be added to the project. 
+To run this project Geckodriver
 
 ## System under tests:
 

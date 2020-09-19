@@ -3,6 +3,7 @@ package cs.ut.entity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,20 +24,20 @@ public class FormEntity {
         this.commentsValue = commentsValue;
     }
 
-    public WebElement getSubmitButton(FirefoxDriver driver) {
+    public WebElement getSubmitButton(RemoteWebDriver driver) {
         return driver.findElementByXPath("(//div[contains(@class,'appsMaterialWizButtonEl appsMaterialWizButtonPaperbuttonEl')])[2]");
     }
 
-    public WebElement getCancelSelectionButton(FirefoxDriver driver) {
+    public WebElement getCancelSelectionButton(RemoteWebDriver driver) {
         return driver.findElementByXPath("(//span[contains(@class,'appsMaterialWizButtonPaperbuttonLabel quantumWizButtonPaperbuttonLabel')])[1]");
     }
 
 
-    public WebElement getFirstQuestionContainer(FirefoxDriver driver) {
+    public WebElement getFirstQuestionContainer(RemoteWebDriver driver) {
         return driver.findElementByXPath("(//div[@class='freebirdFormviewerViewNumberedItemContainer'])[1]");
     }
 
-    public void selectFirstQuestionOption(FirefoxDriver driver) {
+    public void selectFirstQuestionOption(RemoteWebDriver driver) {
         switch (firstQuestionOptionValue) {
             case 1:
                 WebElement option1 = driver.findElementByXPath("(//div[@class='appsMaterialWizToggleRadiogroupOffRadio exportOuterCircle'])[1]");
@@ -66,51 +67,51 @@ public class FormEntity {
         }
     }
 
-    public WebElement getEmailContainer(FirefoxDriver driver) {
+    public WebElement getEmailContainer(RemoteWebDriver driver) {
         return driver.findElementByXPath("(//div[@class='freebirdFormviewerViewNumberedItemContainer'])[3]");
     }
 
-    public WebElement getEmailField(FirefoxDriver driver) {
+    public WebElement getEmailField(RemoteWebDriver driver) {
         return driver.findElement(By.xpath("(//input[@class='quantumWizTextinputPaperinputInput exportInput'])[2]"));
     }
 
-    public void fillEmailField(FirefoxDriver driver){
+    public void fillEmailField(RemoteWebDriver driver){
         WebElement emailField = getEmailField(driver);
         emailField.click();
         emailField.sendKeys(emailValue);
     }
 
 
-    public void fillNameField(FirefoxDriver driver){
+    public void fillNameField(RemoteWebDriver driver){
         WebElement emailField = driver.findElement(By.xpath("(//input[@class='quantumWizTextinputPaperinputInput exportInput'])[1]"));
         emailField.click();
         emailField.sendKeys(nameValue);
     }
 
-    public void fillAddressField(FirefoxDriver driver){
+    public void fillAddressField(RemoteWebDriver driver){
         WebElement emailField = driver.findElement(By.xpath("(//textarea[@class='quantumWizTextinputPapertextareaInput exportTextarea'])[1]"));
         emailField.click();
         emailField.sendKeys(addressValue);
     }
 
 
-    public WebElement getPhoneField(FirefoxDriver driver) {
+    public WebElement getPhoneField(RemoteWebDriver driver) {
         return driver.findElement(By.xpath("(//input[@class='quantumWizTextinputPaperinputInput exportInput'])[3]"));
     }
 
-    public void fillPhoneField(FirefoxDriver driver){
+    public void fillPhoneField(RemoteWebDriver driver){
         WebElement emailField = driver.findElement(By.xpath("(//input[@class='quantumWizTextinputPaperinputInput exportInput'])[3]"));
         emailField.click();
         emailField.sendKeys(phoneValue);
     }
 
-    public void fillCommentsField(FirefoxDriver driver){
+    public void fillCommentsField(RemoteWebDriver driver){
         WebElement emailField = driver.findElement(By.xpath("(//textarea[@class='quantumWizTextinputPapertextareaInput exportTextarea'])[2]"));
         emailField.click();
         emailField.sendKeys(commentsValue);
     }
 
-    public void fillAllFields(FirefoxDriver driver){
+    public void fillAllFields(RemoteWebDriver driver){
         selectFirstQuestionOption(driver);
         fillNameField(driver);
         fillEmailField(driver);
@@ -119,7 +120,7 @@ public class FormEntity {
         fillCommentsField(driver);
     }
 
-    public void clickSubmitButton(FirefoxDriver driver) {
+    public void clickSubmitButton(RemoteWebDriver driver) {
         WebElement submitButton = driver.findElementByXPath("(//div[contains(@class,'appsMaterialWizButtonEl appsMaterialWizButtonPaperbuttonEl')])[2]");
         submitButton.click();
     }
