@@ -1,0 +1,71 @@
+TEST CASE #1
+Test scenario: Test if form can be submitted when one or more required fields is empty.
+Test Steps: 1-> Go to site under test 2-> Press button 'Saada ära' 3-> Check if form is submited or not
+Test Data: Select 3rd option: none, Name: '', Email: '', Address: '', Phone number: '', Comments: ''
+Expected result: Form is not submitted and user is not redirected to next page.
+
+TEST CASE #2
+Test scenario: Test if message is displayed next to every required field if user hasn't filled these and tries to submit form.
+Test Steps: 1-> Go to site under test 2-> Press button 'Saada ära' 3-> Check that all required fields have following messages next to them: 'See on kohustuslik küsimus'
+Test Data: Select 3rd option: none, Name: '', Email: '', Address: '', Phone number: '', Comments: ''
+Expected result: All required field that are marked with * have following message next to them 'See on kohustuslik küsimus'.
+
+TEST CASE #3
+Test scenario: Test submitting invalid email address in email field.
+Test Steps: 1-> Go to site under test 2-> Fill email field 3-> Press button 'Saada ära' 3-> Check that following message is displayed next to the email field: 'Please enter a valid email address'
+Test Data: Select 3rd option: none, Name: '', Email: 'mail-without-at-sign', Address: '', Phone number: '', Comments: ''
+Expected result: Following message is displayed next to the email field: 'Please enter a valid email address'.
+
+TEST CASE #4
+Test scenario: Test that message is displayed to user after form submission.
+Test Steps: 1-> Go to site under test 2-> Fill all fields with valid data 3-> Press button 'Saada ära' 4-> Check that user is redirected to next page and following message is displayed: 'Thanks for submitting your contact info!'
+Test Data: Select 3rd option: Option3, Name: 'Markus Leemet', Email: 'markusleemet@gmail.com', Address: 'Tartu', Phone number: '+37256296263', Comments: 'No comment!'
+Expected result: User is redirected to the next page and following message is displayed: 'Thanks for submitting your contact info!'.
+
+TEST CASE #5
+Test scenario: Test submitting invalid phone number.
+Test Steps: 1-> Go to site under test 2-> Fill all fields 3-> Press button 'Saada ära' 4-> Check that following message is displayed next to the phone field: 'Please enter a valid phone number'
+Test Data: Select 3rd option: Option3, Name: 'Markus Leemet', Email: 'markusleemet@gmail.com', Address: 'Tartu', Phone number: 'This is not valid phone number 123', Comments: 'No comment!'
+Expected result: Following message is displayed next to the email field: 'Please enter a valid phone number'
+
+TEST CASE #6
+Test scenario: Test that all required fields have visual element next to them that shows this field is required for form submission.
+Test Steps: 1-> Go to site under test 2-> Check that all fields that have attribute 'required' also have visual element next to it that indicates that this field is required for form submission
+Test Data: Select 3rd option: none, Name: '', Email: '', Address: '', Phone number: '', Comments: ''
+Expected result: All fields that have attribute 'required' also have visual element next to them that show these are required.
+
+TEST CASE #7
+Test scenario: Test that clicking on 'Tühista valik' unselects selected option in first question.
+Test Steps: 1-> Go to site under test 2-> Select third option in first question 3-> Press button 'Tühista valik' 4-> Check that none of the options are selected in first question
+Test Data: Test Data: Select 3rd option: Option3, Name: '', Email: '', Address: '', Phone number: '', Comments: ''
+Expected result: None of the options are selected in the first question.
+
+TEST CASE #8
+Test scenario: Test that unfocusing email field when invalid email is inserted email field will change its underline color to red that indicates it's filled incorrectly.
+Test Steps: 1-> Go to site under test 2-> Fill email field 3-> Select phone field 4-> Check that email field is underlined with red color
+Test Data: Select 3rd option: none, Name: '', Email: 'this-is-not-valid-email', Address: '', Phone number: '', Comments: ''
+Expected result: Email field is underlined with red color.
+
+TEST CASE #9
+Test scenario: Test that inserting character/word into first question input field sets 'Muu' as selected option.
+Test Steps: "1-> Go to site under test 2-> Click on first question input field 3-> insert 'select this option' 4-> Check that 'Muu' is set to selected option
+Test Data: Select 3rd option: none, Name: '', Email: '', Address: '', Phone number: '', Comments: ''
+Expected result: First question has 'Muu' option selected.
+
+TEST CASE #10
+Test scenario: Test that filling only required fields is enough to submit form.
+Test Steps: 1-> Go to site under test 2-> Fill name field 3-> Fill email field 4-> Fill address field 5-> Click button 'Saada ära' 6-> Check that user is redirected to next page and following message is displayed: 'Thanks for submitting your contact info!'
+Test Data: Select 3rd option: none, Name: 'Markus Leemet', Email: 'markusleemet@gmail.com', Address: 'Tartu', Phone number: '', Comments: ''
+Expected result: User is redirected to the next page and following message is displayed: 'Thanks for submitting your contact info!'.
+
+TEST CASE #11
+Test scenario: Test that clicking on selected radio button deselcts it.
+Test Steps: 1-> Go to site under test 2-> Select first question 3rd option 3-> Click again on first question 3rd option 4-> Check if first question 3rd option is selected or not
+Test Data: Select 3rd option: Option3, Name: '', Email: '', Address: '', Phone number: '', Comments: ''
+Expected result: No option is selected in the first question.
+
+TEST CASE #12
+Test scenario: Test that selecting option in the first question reveals 'Tühista valik' button.
+Test Steps: 1-> Go to site under test 2-> Select first question 3rd option 3-> Check if 'Tühista valik' button is visible or not
+Test Data: Select 3rd option: Option3, Name: '', Email: '', Address: '', Phone number: '', Comments: ''
+Expected result: Button 'Tühista valik' is visible.
