@@ -1,6 +1,7 @@
 # Playtech Automation Developer position test assignment
 
-
+To run Selenium tests run Main class main method. Default RemoteWedDriver for Selenium tests is FirefoxDriver.
+It can be changed by changing driver class variable inside SeleniumTest class.
 
 ## System under tests:
 
