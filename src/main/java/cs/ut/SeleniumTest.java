@@ -1,11 +1,10 @@
 package cs.ut;
 
 import cs.ut.entity.FormEntity;
+import cs.ut.entity.TestStepsEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chromium.ChromiumDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,20 +12,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 public abstract class SeleniumTest {
     protected final String systemUnderTest = "https://docs.google.com/forms/d/e/1FAIpQLScVG7idLWR8sxNQygSnLuhehUNVFti0FnVviWCSjDh-JNhsMA/viewform?fbzx=1323604193658677770";
 
     protected int testCaseId;
     protected String testScenario;
-    protected String testSteps;
+    protected TestStepsEntity testSteps;
     protected FormEntity testData;
     protected String expectedResult;
     protected String actualResult;
     protected RemoteWebDriver driver = new ChromeDriver();
 
 
-    public SeleniumTest(int testCaseId, String testScenario, String testSteps, FormEntity testData, String expectedResult) {
+    public SeleniumTest(int testCaseId, String testScenario, TestStepsEntity testSteps, FormEntity testData, String expectedResult) {
         this.testCaseId = testCaseId;
         this.testScenario = testScenario;
         this.testSteps = testSteps;
@@ -47,13 +47,15 @@ public abstract class SeleniumTest {
         String testResult = expectedResult.equals(actualResult) ? "PASS" : "FAIL";
 
         try (PrintWriter printWriter = new PrintWriter(new FileWriter("testResult/seleniumTestResult", true))){
+            printWriter.append("\n---------------------------------------- \n");
             printWriter.append(String.format("TEST CASE: %d\n", testCaseId));
             printWriter.append(String.format("Test scenario: %s\n", testScenario));
-            printWriter.append(String.format("Test steps: %s\n", testSteps));
-            printWriter.append(String.format("Test data: %s\n", testData));
+            printWriter.append(String.format("Test steps: %s", testSteps));
+            printWriter.append(String.format("Test data: %s", testData));
             printWriter.append(String.format("Expected result: %s\n", expectedResult));
             printWriter.append(String.format("Actual result: %s\n", actualResult));
-            printWriter.append(String.format("Pass/fail: %s\n\n", testResult));
+            printWriter.append(String.format("Pass/fail: %s\n", testResult));
+            printWriter.append("---------------------------------------- \n");
         } catch (IOException ioException) {
             System.err.println("Test result was not printed to output file");
         }

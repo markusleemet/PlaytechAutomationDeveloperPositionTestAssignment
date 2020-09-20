@@ -1,6 +1,6 @@
 # Playtech Automation Developer position test assignment
 
-To run this project Geckodriver
+
 
 ## System under tests:
 

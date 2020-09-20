@@ -2,7 +2,11 @@ package cs.ut.test;
 
 import cs.ut.SeleniumTest;
 import cs.ut.entity.FormEntity;
+import cs.ut.entity.TestStepsEntity;
 import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TestDeselectingRadioButton extends SeleniumTest {
 
@@ -10,7 +14,7 @@ public class TestDeselectingRadioButton extends SeleniumTest {
         super(
                 11,
                 "Test that clicking on selected radio button deselcts it.",
-                "1-> Go to site under test 2-> Select first question 3rd option 3-> Click again on first question 3rd option 4-> Check if first question 3rd option is selected or not",
+                new TestStepsEntity(new ArrayList<String>(Arrays.asList("Go to site under test", "Select first question 3rd option", "Click again on first question 3rd option", "Check if first question 3rd option is selected or not"))),
                 new FormEntity(3, "", "", "", "", ""),
                 "No option is selected in the first question."
         );

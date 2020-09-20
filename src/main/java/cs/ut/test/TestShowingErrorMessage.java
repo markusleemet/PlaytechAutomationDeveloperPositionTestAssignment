@@ -2,10 +2,13 @@ package cs.ut.test;
 
 import cs.ut.SeleniumTest;
 import cs.ut.entity.FormEntity;
+import cs.ut.entity.TestStepsEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TestShowingErrorMessage extends SeleniumTest {
@@ -13,7 +16,7 @@ public class TestShowingErrorMessage extends SeleniumTest {
         super(
                 2,
                 "Test if message is displayed next to every required field if user hasn't filled these and tries to submit form.",
-                "1-> Go to site under test 2-> Press button 'Saada ära' 3-> Check that all required fields have following messages next to them: 'See on kohustuslik küsimus'",
+                new TestStepsEntity(new ArrayList<String>(Arrays.asList("Go to site under test", "Press button 'Saada ära'", "Check that all required fields have following messages next to them: 'See on kohustuslik küsimus'"))),
                 new FormEntity(null, "", "", "", "", ""),
                 "All required field that are marked with * have following message next to them 'See on kohustuslik küsimus'."
         );

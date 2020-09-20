@@ -1,12 +1,5 @@
 package cs.ut.entity;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 public class FormEntity {
     Integer firstQuestionOptionValue;
     String nameValue;
@@ -46,5 +39,16 @@ public class FormEntity {
 
     public String getCommentsValue() {
         return commentsValue;
+    }
+
+    @Override
+    public String toString() {
+        return "\n" +
+                "\tSelect 3rd option = " + firstQuestionOptionValue + "\n" +
+                "\tName = " + nameValue + "\n" +
+                "\tEmail = " + emailValue + "\n" +
+                "\tAddress = " + addressValue + "\n" +
+                "\tPhone = " + phoneValue + "\n" +
+                "\tComments = " + commentsValue + "\n";
     }
 }

@@ -2,9 +2,12 @@ package cs.ut.test;
 
 import cs.ut.SeleniumTest;
 import cs.ut.entity.FormEntity;
+import cs.ut.entity.TestStepsEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class TestRequiredFields extends SeleniumTest {
@@ -13,7 +16,7 @@ public class TestRequiredFields extends SeleniumTest {
         super(
                 6,
                 "Test that all required fields have visual element next to them that shows this field is required for form submission.",
-                "1-> Go to site under test 2-> Check that all fields that have attribute 'required' also have visual element next to it that indicates that this field is required for form submission",
+                new TestStepsEntity(new ArrayList<String>(Arrays.asList("Go to site under test", "Check that all fields that have attribute 'required' also have visual element next to it that indicates that this field is required for form submission\""))),
                 new FormEntity(null, "", "", "", "", ""),
                 "All fields that have attribute 'required' also have visual element next to them that show these are required."
         );

@@ -24,6 +24,8 @@ public class Main {
         new TestFillingOnlyRequiredFields().runTest();
         new TestDeselectingRadioButton().runTest();
         new TestCancelSelectionButton2().runTest();
+
+
     }
 
     public static void main(String[] args) throws IOException {
@@ -32,5 +34,7 @@ public class Main {
         WebDriverManager.chromedriver().setup();
 
         runAllTests();
+
+        System.exit(0);
     }
 }
