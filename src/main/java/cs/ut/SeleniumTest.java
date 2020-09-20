@@ -3,6 +3,8 @@ package cs.ut;
 import cs.ut.entity.FormEntity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chromium.ChromiumDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,7 +23,7 @@ public abstract class SeleniumTest {
     protected FormEntity testData;
     protected String expectedResult;
     protected String actualResult;
-    protected RemoteWebDriver driver = new FirefoxDriver();
+    protected RemoteWebDriver driver = new ChromeDriver();
 
 
     public SeleniumTest(int testCaseId, String testScenario, String testSteps, FormEntity testData, String expectedResult) {

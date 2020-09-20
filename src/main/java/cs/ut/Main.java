@@ -29,6 +29,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         // Setup RemoteWebDrivers to run Selenium tests
         WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.firefoxdriver().setup();
 
         runAllTests();
     }
