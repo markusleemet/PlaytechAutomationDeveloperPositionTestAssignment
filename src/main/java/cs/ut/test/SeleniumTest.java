@@ -1,4 +1,4 @@
-package cs.ut;
+package cs.ut.test;
 
 import cs.ut.entity.FormEntity;
 import cs.ut.entity.TestStepsEntity;
@@ -44,7 +44,7 @@ public abstract class SeleniumTest {
     public abstract void runTest();
 
 
-    protected void endTestAndCreateLog() {
+    protected void endTestAndWriteResultToLog() {
         String testResult = expectedResult.equals(actualResult) ? "PASS" : "FAIL";
 
         try (PrintWriter printWriter = new PrintWriter(new FileWriter("testResult/seleniumTestResult", true))){

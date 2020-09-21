@@ -1,6 +1,5 @@
 package cs.ut.test;
 
-import cs.ut.SeleniumTest;
 import cs.ut.entity.FormEntity;
 import cs.ut.entity.TestStepsEntity;
 import org.openqa.selenium.WebElement;
@@ -28,7 +27,7 @@ public class TestDeselectingRadioButton extends SeleniumTest {
         selectFirstQuestionOption();
 
         WebElement option3 = driver.findElementById("i11");
-        Boolean option3isSelected = option3.getAttribute("aria-checked").equals(true);
+        Boolean option3isSelected = option3.getAttribute("aria-checked").equals("true");
 
         if (option3isSelected) {
             actualResult = "3rd option is selected in the first question.";
@@ -36,6 +35,6 @@ public class TestDeselectingRadioButton extends SeleniumTest {
             actualResult = "No option is selected in the first question.";
         }
 
-        endTestAndCreateLog();
+        endTestAndWriteResultToLog();
     }
 }

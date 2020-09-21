@@ -1,6 +1,5 @@
 package cs.ut.test;
 
-import cs.ut.SeleniumTest;
 import cs.ut.entity.FormEntity;
 import cs.ut.entity.TestStepsEntity;
 import org.openqa.selenium.By;
@@ -18,7 +17,7 @@ public class TestUnderlineColor extends SeleniumTest {
         super(
                 8,
                 "Test that unfocusing email field when invalid email is inserted email field will change its underline color to red that indicates it's filled incorrectly.",
-                new TestStepsEntity(new ArrayList<String>(Arrays.asList("Go to site under test", "Fill all fields", "Select phone field", "Check that email field is underlined with red color"))),
+                new TestStepsEntity(new ArrayList<>(Arrays.asList("Go to site under test", "Fill all fields", "Select phone field", "Check that email field is underlined with red color"))),
                 new FormEntity(null, "", "this-is-not-valid-email", "", "", ""),
                 "Email field is underlined with red color."
         );
@@ -48,7 +47,7 @@ public class TestUnderlineColor extends SeleniumTest {
         } catch (TimeoutException timeoutException) {
             actualResult =  "Email field is not underlined with red color.";
         } finally {
-            endTestAndCreateLog();
+            endTestAndWriteResultToLog();
         }
     }
 }

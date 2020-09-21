@@ -1,6 +1,5 @@
 package cs.ut.test;
 
-import cs.ut.SeleniumTest;
 import cs.ut.entity.FormEntity;
 import cs.ut.entity.TestStepsEntity;
 import org.openqa.selenium.By;
@@ -40,6 +39,6 @@ public class TestAutoSelectingOtherOption extends SeleniumTest {
             actualResult = "First question has not 'Muu' option selected.";
         }
 
-        endTestAndCreateLog();
+        endTestAndWriteResultToLog();
     }
 }

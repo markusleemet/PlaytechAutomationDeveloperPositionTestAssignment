@@ -1,6 +1,5 @@
 package cs.ut.test;
 
-import cs.ut.SeleniumTest;
 import cs.ut.entity.FormEntity;
 import cs.ut.entity.TestStepsEntity;
 
@@ -24,7 +23,6 @@ public class TestCancelSelectionButton2 extends SeleniumTest {
         setUpTest();
         selectFirstQuestionOption();
         Boolean cancelButtonIsVisible = getCancelSelectionButton().isDisplayed();
-        driver.quit();
 
         if (cancelButtonIsVisible) {
             actualResult = "Button 'Tühista valik' is visible.";
@@ -32,6 +30,6 @@ public class TestCancelSelectionButton2 extends SeleniumTest {
             actualResult =  "Button 'Tühista valik' is not visible.";
         }
 
-        endTestAndCreateLog();
+        endTestAndWriteResultToLog();
     }
 }

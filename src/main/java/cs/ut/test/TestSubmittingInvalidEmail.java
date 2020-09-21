@@ -1,6 +1,5 @@
 package cs.ut.test;
 
-import cs.ut.SeleniumTest;
 import cs.ut.entity.FormEntity;
 import cs.ut.entity.TestStepsEntity;
 import org.openqa.selenium.By;
@@ -17,7 +16,7 @@ public class TestSubmittingInvalidEmail extends SeleniumTest {
         super(
                 3,
                 "Test submitting invalid email address in email field.",
-                new TestStepsEntity(new ArrayList<String>(Arrays.asList("Go to site under test", "Fill email field", "Press button 'Saada ära'", "Check that following message is displayed next to the email field: 'Please enter a valid email address'"))),
+                new TestStepsEntity(new ArrayList<>(Arrays.asList("Go to site under test", "Fill email field", "Press button 'Saada ära'", "Check that following message is displayed next to the email field: 'Please enter a valid email address'"))),
                 new FormEntity(null, "", "mail-without-at-sign", "", "", ""),
                 "Following message is displayed next to the email field: 'Please enter a valid email address'."
         );
@@ -41,7 +40,7 @@ public class TestSubmittingInvalidEmail extends SeleniumTest {
         } catch (TimeoutException timeoutException) {
             actualResult = "Message about invalid email is not displayed next to email input field.";
         } finally {
-            endTestAndCreateLog();
+            endTestAndWriteResultToLog();
         }
     }
 }

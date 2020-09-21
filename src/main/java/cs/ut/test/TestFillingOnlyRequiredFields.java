@@ -1,6 +1,5 @@
 package cs.ut.test;
 
-import cs.ut.SeleniumTest;
 import cs.ut.entity.FormEntity;
 import cs.ut.entity.TestStepsEntity;
 import org.openqa.selenium.TimeoutException;
@@ -40,7 +39,7 @@ public class TestFillingOnlyRequiredFields extends SeleniumTest {
         } catch (TimeoutException timeoutException) {
             actualResult = "Form is not submitted and user is not redirected to next page.";
         } finally {
-            endTestAndCreateLog();
+            endTestAndWriteResultToLog();
         }
     }
 }

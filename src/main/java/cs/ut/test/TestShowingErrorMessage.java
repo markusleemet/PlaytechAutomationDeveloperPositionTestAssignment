@@ -1,6 +1,5 @@
 package cs.ut.test;
 
-import cs.ut.SeleniumTest;
 import cs.ut.entity.FormEntity;
 import cs.ut.entity.TestStepsEntity;
 import org.openqa.selenium.By;
@@ -16,7 +15,7 @@ public class TestShowingErrorMessage extends SeleniumTest {
         super(
                 2,
                 "Test if message is displayed next to every required field if user hasn't filled these and tries to submit form.",
-                new TestStepsEntity(new ArrayList<String>(Arrays.asList("Go to site under test", "Press button 'Saada ära'", "Check that all required fields have following messages next to them: 'See on kohustuslik küsimus'"))),
+                new TestStepsEntity(new ArrayList<>(Arrays.asList("Go to site under test", "Press button 'Saada ära'", "Check that all required fields have following messages next to them: 'See on kohustuslik küsimus'"))),
                 new FormEntity(null, "", "", "", "", ""),
                 "All required field that are marked with * have following message next to them 'See on kohustuslik küsimus'."
         );
@@ -46,6 +45,6 @@ public class TestShowingErrorMessage extends SeleniumTest {
                 }
             }
         }
-        endTestAndCreateLog();
+        endTestAndWriteResultToLog();
     }
 }

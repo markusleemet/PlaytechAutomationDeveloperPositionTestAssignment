@@ -1,6 +1,5 @@
 package cs.ut.test;
 
-import cs.ut.SeleniumTest;
 import cs.ut.entity.FormEntity;
 import cs.ut.entity.TestStepsEntity;
 import org.openqa.selenium.TimeoutException;
@@ -16,7 +15,7 @@ public class TestSubmittingInvalidForm extends SeleniumTest {
         super(
                 1,
                 "Test if form can be submitted when one or more required fields is empty.",
-                new TestStepsEntity(new ArrayList<String>(Arrays.asList("Go to site under test", "Press button 'Saada ära'", "Check if form is submited or not"))),
+                new TestStepsEntity(new ArrayList<>(Arrays.asList("Go to site under test", "Press button 'Saada ära'", "Check if form is submitted or not"))),
                 new FormEntity(null, "", "", "", "", ""),
                 "Form is not submitted and user is not redirected to next page."
         );
@@ -34,7 +33,7 @@ public class TestSubmittingInvalidForm extends SeleniumTest {
         } catch (TimeoutException timeoutException) {
             actualResult = "Form is not submitted and user is not redirected to next page.";
         } finally {
-            endTestAndCreateLog();
+            endTestAndWriteResultToLog();
         }
     }
 }

@@ -1,6 +1,5 @@
 package cs.ut.test;
 
-import cs.ut.SeleniumTest;
 import cs.ut.entity.FormEntity;
 import cs.ut.entity.TestStepsEntity;
 import org.openqa.selenium.By;
@@ -16,7 +15,7 @@ public class TestRequiredFields extends SeleniumTest {
         super(
                 6,
                 "Test that all required fields have visual element next to them that shows this field is required for form submission.",
-                new TestStepsEntity(new ArrayList<String>(Arrays.asList("Go to site under test", "Check that all fields that have attribute 'required' also have visual element next to it that indicates that this field is required for form submission\""))),
+                new TestStepsEntity(new ArrayList<>(Arrays.asList("Go to site under test", "Check that all fields that have attribute 'required' also have visual element next to it that indicates that this field is required for form submission\""))),
                 new FormEntity(null, "", "", "", "", ""),
                 "All fields that have attribute 'required' also have visual element next to them that show these are required."
         );
@@ -33,7 +32,6 @@ public class TestRequiredFields extends SeleniumTest {
         List<WebElement> allQuestionContainers = driver.findElementsByClassName("freebirdFormviewerViewNumberedItemContainer");
 
         for (WebElement questionContainer : allQuestionContainers) {
-            String questionName = questionContainer.findElement(By.className("freebirdFormviewerComponentsQuestionBaseTitle")).getText();
 
             // Get input field inside container
             WebElement inputField = questionContainer.findElement(By.xpath(
@@ -46,12 +44,11 @@ public class TestRequiredFields extends SeleniumTest {
                 // Check if container with required input has asterisk element
                 List<WebElement> asterisks = questionContainer.findElements(By.className("freebirdFormviewerComponentsQuestionBaseRequiredAsterisk"));
                 if (asterisks.size() == 0) {
-                    driver.quit();
                     actualResult = "Some of the fields that have attribute required doesn't have visual asterisk element next to them";
                 }
             }
         }
 
-        endTestAndCreateLog();
+        endTestAndWriteResultToLog();
     }
 }

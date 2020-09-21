@@ -1,6 +1,5 @@
 package cs.ut.test;
 
-import cs.ut.SeleniumTest;
 import cs.ut.entity.FormEntity;
 import cs.ut.entity.TestStepsEntity;
 import org.openqa.selenium.By;
@@ -16,7 +15,7 @@ public class TestCancelSelectionButton extends SeleniumTest {
         super(
                 7,
                 "Test that clicking on 'Tühista valik' unselects selected option in first question.",
-                new TestStepsEntity(new ArrayList<String>(Arrays.asList("Go to site under test", "Select third option in first question", "Press button 'Tühista valik'", "Check that none of the options are selected in first question"))),
+                new TestStepsEntity(new ArrayList<>(Arrays.asList("Go to site under test", "Select third option in first question", "Press button 'Tühista valik'", "Check that none of the options are selected in first question"))),
                 new FormEntity(3, "", "", "", "", ""),
                 "None of the options are selected in the first question."
         );
@@ -41,6 +40,6 @@ public class TestCancelSelectionButton extends SeleniumTest {
                 actualResult =  "One option is selected in the first question.";
             }
         }
-        endTestAndCreateLog();
+        endTestAndWriteResultToLog();
     }
 }
